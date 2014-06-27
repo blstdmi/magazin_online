@@ -1,0 +1,21 @@
+{%for message in get_flashed_messages() %}
+	<b><font color='green'>{{ message }}</font></b>
+{% endfor %}
+
+{%for product in product_list %}
+	<p>
+	   {{ product.name }}
+	   <a href="/edit/{{ product.id }}">edit</a>
+	</p>
+
+
+{% endfor %}
+
+
+<h1>produs nou</h1>
+
+
+<form action="/save", method="post">
+	<input name = "name">
+	<button type = "submit">save</button>
+</form>
