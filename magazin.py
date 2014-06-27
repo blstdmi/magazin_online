@@ -24,10 +24,17 @@ def save():
     
     return flask.redirect('/')
 
-@app.route('/edit/<int:product_id>')
+@app.route('/edit/<int:product_id>', methods=['POST','GET'])
 def edit(product_id):
     product = Product.query.get(product_id)
-    return 'editing %r' % product
+    if not product:
+        flask.abort(404)
+    if flask.request.method == 'POST':
+        product.name = flask.request.form['name']
+        db.session.commit()
+        return flask.redirect('/edit/%d' % product.id)
+
+    return flask.render_template('edit.html', product=product)
 
 db.create_all()
 app.run(debug = True)
