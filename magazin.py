@@ -36,5 +36,25 @@ def edit(product_id):
 
     return flask.render_template('edit.html', product=product)
 
+@app.route('/api/list')
+def api_list():
+    product_id_list = []
+    for product in Product.query.all():
+        product_id_list.append(product.id)
+    return flask.jsonify({
+        'id_list': product_id_list,
+    })
+
+@app.route('/api/product/<int:product_id>')
+def api_product(product_id):
+    product = Product.query.get(product_id)
+    name = product.name
+    return flask.jsonify({
+        'name': name,
+        'id': product_id,
+    })
+
+
 db.create_all()
 app.run(debug = True)
+
