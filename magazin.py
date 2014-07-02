@@ -36,6 +36,16 @@ def edit(product_id):
 
     return flask.render_template('edit.html', product=product)
 
+@app.route('/delete/<int:product_id>', methods=['DELETE'])
+def delete(product_id):
+    print "deleting...", flask.request.form['name']
+    product = Product(name=flask.request.form['name'])
+    db.session.delete(product)
+    db.session.commit()
+    flask.flash("product deleted")
+    
+    return flask.redirect('/')
+    
 @app.route('/api/list')
 def api_list():
     product_id_list = []
