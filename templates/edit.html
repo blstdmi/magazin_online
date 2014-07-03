@@ -1,11 +1,13 @@
 <h1>Produsul</h1>
 <p>
  	{{ product.id }}
- 	{{ product.name }}
+	{{ product.name }}
+	{{ product.price }}
 </p>
 
 <form method="post">
 	<input name = "name" value = '{{ product.name }}'>
+	<input name = "price" value = '{{ product.price }}'>
 	<button type = "submit">Change</button>
 </form>
 
