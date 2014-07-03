@@ -1,13 +1,27 @@
-<h1>Produsul</h1>
-<p>
- 	{{ product.id }}
-	{{ product.name }}
-	{{ product.price }}
-</p>
+{% extends "bootstrap/base.html" %}
 
-<form method="post">
+{% block title %}Produse{% endblock %}
+{% block content %}
+<h3>Produsul</h3>
+<table class="table table-striped table-bordered table-condensed table-hover" border="1">
+	<thead>
+		<th>Id</th>
+		<th>Nume</th>
+		<th>Pret</th>
+	</thead>	
+	<tr>	
+		<td>{{ product.id }}</td>
+		<td>{{ product.name }}</td>
+		<td>{{ product.price }}</td>
+	</tr>
+	
+</table>
+<br>
+<h4>Editare informatii produs<br>
+	<small>Introduceti noile date:</small></h4>
+<form class="form form-horizontal" role="form" method="post">
 	<input name = "name" value = '{{ product.name }}'>
 	<input name = "price" value = '{{ product.price }}'>
-	<button type = "submit">Change</button>
+	<button class="btn btn-primary btn-sm" type = "submit">Change</button>
 </form>
-
+{% endblock %}

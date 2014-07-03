@@ -1,12 +1,17 @@
 {% extends "bootstrap/base.html" %}
-{%for message in get_flashed_messages() %}
-	<b><font color='green'>{{ message }}</font></b>
-{% endfor %}
+
 
 {% block title %}Produse{% endblock %}
 {% block content %}
-<table border="1">
+
+{%for message in get_flashed_messages() %}
+	<h5><b><font color='green'>{{ message }}</font></b></h5>
+{% endfor %}
+
+<br><h3>Produse</h3>
+<table class="table table-striped table-bordered table-condensed table-hover" border="1">
 	<thead>
+		<th>Id</th>
 		<th>Nume</th>
 		<th>Pret</th>
 		<th>Edit</th>
@@ -15,7 +20,8 @@
 	</thead>
 
 {%for product in product_list %}
-	<tr>
+        <tr>
+		<td>{{ product.id }}</td>
 		<td>{{ product.name }}</td>
 		<td>{{ product.price }}</td>
 		<td><a href="/edit/{{ product.id }}">Edit</a></td>
@@ -27,12 +33,12 @@
 {% endfor %}
 </table>
 <br><br>
-Adaugare produs nou:
+<h4>Adaugare produs nou <br><small>Introduceti datele:</small></h4>
 <br>
 
 <form class="form form-horizontal" role="form" action="/save", method="post">
 	<input name = "name">
 	<input name = "price">
-	<button type = "submit">save</button>
+	<button  class="btn btn-primary btn-sm" type = "submit">save</button>
 </form>
 {% endblock %}

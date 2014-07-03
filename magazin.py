@@ -23,7 +23,7 @@ def save():
     product = Product(name=flask.request.form['name'], price=flask.request.form['price'])
     db.session.add(product)
     db.session.commit()
-    flask.flash("product saved")
+    flask.flash("Product saved")
     
     return flask.redirect('/')
 
@@ -49,7 +49,7 @@ def delete(product_id):
     
     db.session.delete(product)
     db.session.commit()
-    flask.flash("product deleted")
+    flask.flash("Product deleted")
     
     return flask.redirect('/')
 
