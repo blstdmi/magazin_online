@@ -56,10 +56,14 @@ def delete(product_id):
 @app.route('/api/list')
 def api_list():
     product_id_list = []
+    name_list = []
+	price_list = []
     for product in Product.query.all():
         product_id_list.append(product.id)
     return flask.jsonify({
         'id_list': product_id_list,
+        'name_list':name_list,
+		'price_list':price_list
     })
 
 @app.route('/api/product/<int:product_id>')
